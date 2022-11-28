@@ -58,7 +58,7 @@ const GameScreen = () => {
         optionsArray.forEach(option => {
             console.log(bollardList[roundNo].country)
             console.log(roundNo)
-            if (option.textContent == bollardList[roundNo].country){
+            if (option.textContent === bollardList[roundNo].country){
                 option.classList.add('correct')
             }
             else{
@@ -69,11 +69,11 @@ const GameScreen = () => {
     }
 
     function nextBollard(){
-        if (roundNo == bollardList.length-1 && answered) return 
+        if (roundNo === bollardList.length-1 && answered) return 
         console.log("next fired")
         const optionsArray = Array.from(document.querySelectorAll(".option"))
         optionsArray.forEach(option => {
-            if (option.textContent == bollardList[roundNo].country){
+            if (option.textContent === bollardList[roundNo].country){
                 option.classList.remove("correct")
             }
             else{
