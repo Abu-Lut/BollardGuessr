@@ -54,10 +54,9 @@ const GameScreen = () => {
 
     function checkAnswer(){
         console.log("fired")
+        // console.log(roundNo)
         const optionsArray = Array.from(document.querySelectorAll(".option"))
         optionsArray.forEach(option => {
-            console.log(bollardList[roundNo].country)
-            console.log(roundNo)
             if (option.textContent === bollardList[roundNo].country){
                 option.classList.add('correct')
             }
@@ -69,7 +68,7 @@ const GameScreen = () => {
     }
 
     function nextBollard(){
-        if (roundNo === bollardList.length-1 && answered) return 
+        if (roundNo === bollardList.length-1 || !answered) return 
         console.log("next fired")
         const optionsArray = Array.from(document.querySelectorAll(".option"))
         optionsArray.forEach(option => {
@@ -80,11 +79,17 @@ const GameScreen = () => {
                 option.classList.remove("incorrect")
             }
         })
-        setRoundNo(roundNo + 1)
-        console.log(roundNo)
         answered = false
-        setFImg(bollardList[roundNo].frontView)
-        setRImg(bollardList[roundNo].rearView)
+        setRoundNo(roundNo + 1)
+        
+        setRoundNo(roundNo => {
+            console.log(roundNo)
+            setFImg(bollardList[roundNo].frontView)
+            setRImg(bollardList[roundNo].rearView)
+            
+            return roundNo
+        })  
+        
     }
     
     return (
